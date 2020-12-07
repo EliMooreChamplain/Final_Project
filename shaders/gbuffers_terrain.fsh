@@ -12,7 +12,5 @@ void main()
   blockColor.rgb *= tintColor;
 
 
-
-
   gl_FragData[0] = blockColor;
 }
