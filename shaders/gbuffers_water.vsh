@@ -40,14 +40,13 @@ void main()
     );
 
     posOffset.xyz += addWave(
-      worldpos, //World Position
+      worldpos + vec3(0.5, 0.75, 0.0), //World Position
       0.5, //Steepness
       0.05, //Height
       1.2f, //Speed
       vec2(-0.2,-0.2), //Direction
       2.0 //Frequency
       );
-
 
 
   posOffset.y = clamp(posOffset.y, -0.5, 0.2);
