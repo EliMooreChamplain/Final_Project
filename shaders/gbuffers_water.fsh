@@ -1,6 +1,7 @@
 #version 120
 
 uniform sampler2D texture;
+uniform vec3 sunPosition;
 
 varying vec3 tintColor;
 varying vec3 normal;
@@ -32,10 +33,10 @@ void initLight(out sLight light, in vec4 center, in vec3 color, in float intensi
 
 vec3 lambertReflect(sLight light)
 {
-    vec3 lightVector = normalize(light.sCenter - normalize(normal.xyz));
+    vec3 lightVector = normalize(light.sCenter.xyz - normalize(normal.xyz));
     vec3 diffuseCoefficient = normal.xyz * lightVector;
 
-    vec3 attenuation = 1.0 / (1.0 + ((light.sCenter - vec3(normal.xyz)) / light.sIntensity) + (((light.sCenter - vec3(normal.xyz)) * (light.sCenter - vec3(normal.xyz)) / (light.sIntensity * light.sIntensity))));
+    vec3 attenuation = 1.0 / (1.0 + ((light.sCenter.xyz - vec3(normal.xyz)) / light.sIntensity) + (((light.sCenter.xyz - vec3(normal.xyz)) * (light.sCenter.xyz - vec3(normal.xyz)) / (light.sIntensity * light.sIntensity))));
 
     vec3 diffuseIntensity = diffuseCoefficient * attenuation;
 
@@ -56,7 +57,7 @@ void main()
   waterColor.rgb *= tintColor;
 
   sLight sun;
-  vec4 center = sunPosition;
+  vec4 center = vec4(sunPosition, 1.0);
   vec3 lightColor = vec3(1, 1, 1);
   float intensity = 1.0;
   initLight(sun, center, lightColor, intensity);
