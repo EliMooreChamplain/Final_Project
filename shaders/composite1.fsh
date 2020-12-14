@@ -54,10 +54,10 @@ void main()
   vec3 center = sunPosition;
   vec3 lightColor = vec3(1, 1, 1);
   float intensity = 1.0;
-  initLight(light, center, lightColor, intensity);
+  initLight(sun, center, lightColor, intensity);
 
-  vec3 reflectionColor = texture2D(texture, texcoord.st);
-  vec3 finalLight = finalColor(light, reflectionColor);
+  vec3 reflectionColor = texture2D(texture, texcoord.st).xyz;
+  vec4 finalLight = vec4(finalColor(sun, reflectionColor),1.0);
 
   gl_FragData[0] = finalLight;
 }
