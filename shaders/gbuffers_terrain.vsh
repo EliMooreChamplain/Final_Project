@@ -46,7 +46,7 @@ void main()
       1.1, //Height
       2.0f, //Speed
       vec2(0.5,0.5), //Direction
-      3.0 //Frequency
+      0.2 //Frequency
       );
 
     offset.xyz += addWave(
@@ -55,7 +55,7 @@ void main()
         0.05, //Height
         1.2f, //Speed
         vec2(-0.2,-0.2), //Direction
-        2.0 //Frequency
+        0.1 //Frequency
         );
   }
 
